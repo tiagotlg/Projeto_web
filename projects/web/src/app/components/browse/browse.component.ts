@@ -5,12 +5,12 @@ import { DescontoService } from 'projects/api/src/lib/descontos/desconto.service
 import { ObterListaDescontoRequest } from 'projects/api/src/lib/descontos/models/requests/obter-lista-descontos-request';
 import { Subscription } from 'rxjs';
 
-// interface PageEvent {
-//   first: number;
-//   rows: number;
-//   page: number;
-//   pageCount: number;
-// }
+interface PageEvent {
+  first: number;
+  rows: number;
+  page: number;
+  pageCount: number;
+}
 
 @Component({
   selector: 'app-browse',
@@ -20,7 +20,7 @@ export class BrowseComponent implements OnInit {
   formulario: FormGroup;
   inscricao: Subscription;
   entidades: ListaDescontos[];
-  
+
   steam: boolean = true;
   gog: boolean = true;
   origin: boolean = true;
@@ -47,14 +47,20 @@ export class BrowseComponent implements OnInit {
     private fb: FormBuilder
   ) { }
 
-  // first: number = 0;
+  first: number = 0;
 
-  // rows: number = 10;
+  rows: number = 25;
 
-  // onPageChange(event: PageEvent) {
-  //   this.first = event.first;
-  //   this.rows = event.rows;
-  // }
+  onPageChange(event: any) {
+    console.log(event);
+    this.first = event.page;
+    this.rows = event.rows;
+
+    const requestJogos = new ObterListaDescontoRequest(0, 0, 0, 0, event.page, event.rows)
+    // console.log('request:', requestJogos)
+    this.inscricao = this.service.obterListaDescontos(requestJogos)
+      .subscribe((res: ListaDescontos[]) => this.entidades = res);
+  }
 
   ngOnInit(): void {
     this.formulario = this.fb.group({
@@ -75,10 +81,6 @@ export class BrowseComponent implements OnInit {
     }
   }
 
-  pesquisar(): void {
-    console.log('Pesquisar', this.formulario.value.titulo);
-  }
-
   lojas(): void {
     this.mostrarSelecaoLojas = true;
   }
@@ -93,11 +95,10 @@ export class BrowseComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const requestJogos = new ObterListaDescontoRequest()
+    const requestJogos = new ObterListaDescontoRequest(0, 0, 0, 0, this.first, this.rows)
     this.inscricao = this.service.obterListaDescontos(requestJogos)
       .subscribe((res: ListaDescontos[]) => {
-        this.entidades = res,
-          console.log(res)
+        this.entidades = res
       });
   }
 }

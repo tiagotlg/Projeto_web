@@ -18,7 +18,16 @@ export class DescontoService {
   }
 
   obterListaDescontos(request: ObterListaDescontoRequest): Observable<ListaDescontos[]> {
-    return this.http.post<ListaDescontos[]>(`${this.url()}/BuscaPorDescontos`, request)
+    var body = {
+      lojaId: request.lojaId, 
+      precoMaximo: request.precoMaximo, 
+      precoMinimo: request.precoMinimo, 
+      steamRating: request.rating, 
+      pageNumber: request.pageNumber, 
+      pageSize: request.pageSize
+    }
+    
+    return this.http.post<ListaDescontos[]>(`${this.url()}/BuscaPorDescontos`, body)
       .pipe(map(o => o));
   }
 
