@@ -1,0 +1,130 @@
+<div class="flex justify-content-between my-4">
+    <div class="p-card w-4">
+        <div class="p-card-header"><i class="pi pi-steam"></i> STEAM</div>
+        <div class="p-card-body">
+            <ul>
+                <li *ngFor="let jogoSteam of steam" class="p-d-flex p-jc-between">
+                    <span>{{ jogoSteam.titulo.length > 29 ? (jogoSteam.titulo.substring(0, 29) + '...') :
+                        jogoSteam.titulo }}</span>
+                    <div>
+                        <span class="p-text-line-through bg-primary-reverse">{{ jogoSteam.precoNormal }}</span>
+                        <span class="border-round bg-black-alpha-90 text-white px-1 ml-2">{{ jogoSteam.precoComDesconto
+                            }}</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="p-card-footer">
+            <button pButton type="button" icon="pi pi-angle-right">
+                View All Steam Deals
+            </button>
+        </div>
+    </div>
+    <div class="p-card w-4">
+        <div class="p-card-header"><i class="pi pi-steam"></i> GOG</div>
+        <div class="p-card-body">
+            <ul>
+                <li *ngFor="let jogoGog of gog" class="p-d-flex p-jc-between">
+                    <span>{{ jogoGog.titulo.length > 29 ? (jogoGog.titulo.substring(0, 29) + '...') : jogoGog.titulo
+                        }}</span>
+                    <div>
+                        <span class="p-text-line-through bg-primary-reverse">{{ jogoGog.precoNormal }}</span>
+                        <span class="border-round bg-black-alpha-90 text-white px-1 ml-2">{{ jogoGog.precoComDesconto
+                            }}</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="p-card-footer">
+            <button pButton type="button" icon="pi pi-angle-right">
+                View All GOG Deals
+            </button>
+        </div>
+    </div>
+    <div class="p-card w-4">
+        <div class="p-card-header"><i class="pi pi-steam"></i> ORIGIN</div>
+        <div class="p-card-body">
+            <ul>
+                <li *ngFor="let jogoOrigin of origin" class="p-d-flex p-jc-between">
+                    <span>{{ jogoOrigin.titulo.length > 29 ? (jogoOrigin.titulo.substring(0, 29) + '...') :
+                        jogoOrigin.titulo }}</span>
+                    <div>
+                        <span class="p-text-line-through bg-primary-reverse">{{ jogoOrigin.precoNormal }}</span>
+                        <span class="border-round bg-black-alpha-90 text-white px-1 ml-2">{{ jogoOrigin.precoComDesconto
+                            }}</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="p-card-footer">
+            <button pButton type="button" icon="pi pi-angle-right">
+                View All ORIGIN Deals
+            </button>
+        </div>
+    </div>
+</div>
+<div class="flex justify-content-between my-4">
+    <div class="p-card w-4">
+        <div class="p-card-header"><i class="pi pi-steam"></i> Uplay</div>
+        <div class="p-card-body">
+            <ul>
+                <li *ngFor="let jogoUplay of uplay" class="p-d-flex p-jc-between">
+                    <span>{{ jogoUplay.titulo.length > 29 ? (jogoUplay.titulo.substring(0, 29) + '...') :
+                        jogoUplay.titulo }}</span>
+                    <div>
+                        <span class="p-text-line-through bg-primary-reverse">{{ jogoUplay.precoNormal }}</span>
+                        <span class="border-round bg-black-alpha-90 text-white px-1 ml-2">{{ jogoUplay.precoComDesconto
+                            }}</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="p-card-footer">
+            <button pButton type="button" icon="pi pi-angle-right">
+                View All Uplay Deals
+            </button>
+        </div>
+    </div>
+    <div class="p-card w-4">
+        <div class="p-card-header"><i class="pi pi-steam"></i> EPIC GAMES</div>
+        <div class="p-card-body">
+            <ul>
+                <li *ngFor="let jogoEpicGames of epicGames" class="p-d-flex p-jc-between">
+                    <span>{{ jogoEpicGames.titulo.length > 29 ? (jogoEpicGames.titulo.substring(0, 29) + '...') :
+                        jogoEpicGames.titulo }}</span>
+                    <div>
+                        <span class="p-text-line-through bg-primary-reverse">{{ jogoEpicGames.precoNormal }}</span>
+                        <span class="border-round bg-black-alpha-90 text-white px-1 ml-2">{{
+                            jogoEpicGames.precoComDesconto }}</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="p-card-footer">
+            <button pButton type="button" icon="pi pi-angle-right">
+                View All Epic Games Deals
+            </button>
+        </div>
+    </div>
+    <div class="p-card w-4">
+        <div class="p-card-header"><i class="pi pi-steam"></i> BLIZZARD</div>
+        <div class="p-card-body">
+            <ul>
+                <li *ngFor="let jogoBlizzard of blizzard" class="p-d-flex p-jc-between">
+                    <span>{{ jogoBlizzard.titulo.length > 29 ? (jogoBlizzard.titulo.substring(0, 29) + '...') :
+                        jogoBlizzard.titulo }}</span>
+                    <div>
+                        <span class="p-text-line-through bg-primary-reverse">{{ jogoBlizzard.precoNormal }}</span>
+                        <span class="border-round bg-black-alpha-90 text-white px-1 ml-2">{{
+                            jogoBlizzard.precoComDesconto }}</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="p-card-footer">
+            <button pButton type="button" icon="pi pi-angle-right">
+                View All BLIZZARD Deals
+            </button>
+        </div>
+    </div>
+</div>

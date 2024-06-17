@@ -1,0 +1,105 @@
+<div class="my-5" >
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class="flex justify-content-center">
+      <div class="mx-3">
+        <button type="button" (click)="lojas()">Lojas</button>
+      </div>
+      <div class="w-3 mx-3 flex align-items-center">
+        <label>Preço: </label>
+        <p-slider class="mr-2 w-7" [min]="0" [max]="50" formControlName="preco" [range]="true"
+          [(ngModel)]="rangeValues"></p-slider>
+          <label>${{ rangeValues[0] }} - ${{ rangeValues[1] }}</label>
+        </div>
+        <div class="w-3 mx-3 flex align-items-center">
+          <label>avaliação: </label>
+          <p-slider class="mr-2 w-7" [min]="45" [max]="95" formControlName="porcentagem" [(ngModel)]="steamRating"
+          (onChange)="updateLabel()"></p-slider>
+          <label>{{ label }}</label>
+        </div>
+        <div class="flex justify-content-center">
+          <button type="submit" [disabled]="formulario.invalid" class="btn btn-primary">Pesquisar</button>
+        </div>
+    </div>
+    <!-- <div>
+      <p-paginator 
+    (onPageChange)="onPageChange($event)" 
+    [first]="first"
+    [rows]="rows" 
+    [totalRecords]="120" 
+    [rowsPerPageOptions]="[10, 20, 30]" />
+    </div> -->
+
+
+    <!-- Seção para seleção de lojas -->
+    <p-dialog header="Stores to Display in Results" [(visible)]="mostrarSelecaoLojas" [modal]="true" [responsive]="true"
+      [style]="{width: '350px', height: '190px'}">
+      <div class="flex justify-content-between">
+        <div class="grid ml-4">
+          <div class="col-12">
+            <p-checkbox value="Steam" inputId="Steam" />
+            <label for="Steam">Steam</label>
+          </div>
+          <div class="col-12">
+            <p-checkbox value="GOG" inputId="GOG" />
+            <label for="GOG">GOG</label>
+          </div>
+          <div class="col-12">
+            <p-checkbox value="Origin" inputId="Origin" />
+            <label for="Origin">Origin</label>
+          </div>
+        </div>
+        <div class="grid mr-1">
+          <div class="col-12">
+            <p-checkbox value="Uplay" inputId="Uplay" />
+            <label for="Uplay">Uplay</label>
+          </div>
+          <div class="col-12">
+            <p-checkbox value="Epic Games" inputId="Epic" />
+            <label for="Epic">Epic Games</label>
+          </div>
+          <div class="col-12">
+            <p-checkbox value="Blizzard" inputId="Blizzard" />
+            <label for="Blizzard">Blizzard</label>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-content-center mt-3">
+        <button type="button" (click)="fecharDialog()">OK</button>
+      </div>
+    </p-dialog>
+  </form>
+</div>
+
+<div>
+  <p-table [value]="entidades" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Loja</th>
+            <th>Salvo</th>
+            <th>Preço</th>
+            <th>Titulo</th>
+            <th>Desconto Rating</th>
+            <th>lançamento</th>
+            <th>reviews</th>
+            <th>data</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-entidade>
+        <tr>
+            <td class="mb-2">{{ entidade.lojaID }}</td>
+            <td>{{ entidade.poupado | number: '1.0-0' }}%</td>
+            <td class="flex align-items-center">
+              <span class="line-through text-gray-500 mx-2">{{ entidade.precoNormal | currency }}</span>
+              <span class="text-green-500 mr-2">{{ entidade.precoComDesconto | currency }}</span>
+            </td>            
+            <td>
+              <span>{{ entidade.titulo }}</span>
+            </td>
+            <td>{{ entidade.avaliacaoDesconto }}</td>
+            <td>{{ entidade.dataLancamento === "0" ? '-' : (entidade.dataLancamento * 1000 | date:'dd/MM/yyyy') }}</td>
+            <td>{{ entidade.notaCritica === "0" ? '-' : entidade.notaCritica }}%</td>
+            <td>{{ entidade.ultimaAlteracao === "0" ? '-' : (entidade.ultimaAlteracao * 1000 | date:'dd/MM/yyyy') }}</td>
+        </tr>
+    </ng-template>
+</p-table>
+</div>

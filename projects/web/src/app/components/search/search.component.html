@@ -1,0 +1,32 @@
+<div>
+    <div class="flex justify-content-center">
+        <input type="text" class="col-4 my-5" (keyup.enter)="pesquisarJogo($event)" />
+    </div>
+    <div *ngFor="let entidade of entidades">
+        <div (click)="clicado(entidade)" class="grid w-full flex justify-content-start">
+            <div class="boxArtContainer mr-3 mb-4">
+                <div class="boxArt" style="background-image: url({{entidade.thumb}})"></div>
+            </div>
+            <div class="grid">
+                <div class="col-12">
+                    <label>{{entidade.externo}}</label>
+                </div>
+                <div *ngIf="!aberto" class="col-12">
+                    <div>
+                        <label>Preço mais barato:</label>
+                    </div>
+                    <div>
+                        <label>${{entidade.maisBarato}}</label>
+                    </div>
+                </div>
+                <div *ngIf="aberto" class="col-12">
+                    <div *ngFor="let lojas in jogo.descontoJogoResumo" class="flex">
+                        <div>
+                            <label>{{lojas.lojaId}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
